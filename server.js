@@ -8,8 +8,8 @@ var PORT = process.env.PORT || 8080
 app.use(express.urlncoded({ extended: true}));
 app.use(express.json());
 
-require('./routes/apiRoutes')(app);
-require('./routes/htmlRoutes')(app);
+require('/../routes/apiRoutes.js')(app);
+require('/../routes/htmlRoutes.js')(app);
 
 app.listen(PORT, function() {
 console.log('App listeing on PORT ' + PORT)
