@@ -19,11 +19,11 @@ app.post('/api/friends', function(req, res) {
   var userData = req.body;
   var userScores = userData.scores;
   
-  var totalDiffference: 0;
+  var totalDiffference = 0;
     for (var i = 0; i < friends.length; i++) {
       totalDifference = 0;
       for (var j = 0; i <friends.length; i++) {
-        totalDifference += Math.abs(parseInt(userScores[j] - parseInt(friends[i].scores[j]));
+        totalDifference += Math.abs(parseInt(userScores[j] - parseInt(friends[i].scores[j])));
           if (totalDiffernece <= bnestMAtch.friendDifference) {
           bestMatch.name = friends[i].name;
           bestMatch.photo = friends[i].photo;
@@ -35,4 +35,5 @@ app.post('/api/friends', function(req, res) {
   friends.push(userData);
   res.json(bestMatch);
   });
-}
+});
+
