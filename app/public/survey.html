@@ -184,9 +184,20 @@
 </div>
 
 <script type='text/javascript'>
+  $(document).ready(function() {
+    $('select').material_select();
+    $('.modal').modal({
+				dismissible: false, 
+				opacity: .5, 
+				inDuration: 400, 
+				outDuration: 200, 
+				startingTop: '4%', 
+				endingTop: '10%' 
+    });
+  });
 
-$(document).ready(function(){
   $('#submit').on('click', function(event) {
+    event.preventDefault();
     function validateForm() {
       var isValid = true;
       $('.form-control').each(function(){
@@ -222,8 +233,9 @@ $(document).ready(function(){
         
         var currentURL = window.location.origin;
         $.post(currentURL + '/api/friends', userData, function(data){
-          $('matchName').text(data.name);
-          $('matchImg').attr('src',data.photo);
+
+          $('#matchName').text(data.name);
+          $('#matchImg').attr('src',data.photo);
           $('#resultsModal').modal('toggle');
         });
       } else {
@@ -231,8 +243,6 @@ $(document).ready(function(){
       }
       return false;
     });
-  });
-
 </script>
 </body>
 </html>
