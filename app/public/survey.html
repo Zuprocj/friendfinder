@@ -197,10 +197,8 @@
     });
 
   $('#submit').on('click', function(event) {
-    event.preventDefault();
     function validateForm() {
       var isValid = true;
-      
       $('.form-control').each(function() {
         if ($(this).val() === '') {
           isValid = false;
@@ -208,7 +206,7 @@
       });
 
       $('.chosen-select').each(function() {
-        if($(this).val() === '') {
+        if ($(this).val() === '') {
             isValid = false;
             }
            });

@@ -32,9 +32,8 @@ module.exports = function(app) {
         }
       }
     }
-    
+
   friends.push(userData);  
   res.json(bestMatch);
-  
   });
 };
