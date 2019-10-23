@@ -7,13 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>FriendFinderHome</title>
+  <title>FriendFinderSurvey</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="assets/css/styles.css" media="screen">
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.css'>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.js'></script>
 
 </head>
 <body>
@@ -21,10 +24,11 @@
 <div class="container">
 
   <h2>Survey Questions</h2>
-  <h3>About You:</h3>
+  <br>
+  <h3><strong>About You:</strong></h3>
   <h4>Name (required):</h4>
     <input type='text' name='' id='name' class='form-control' required>
-    <h4>Link to Photo Image (required)</h4>
+  <h4>Link to Photo Image (required)</h4>
     <input type='text' name='' id='photo' class='form-control' required>
   <br>
   
@@ -141,22 +145,20 @@
   <button type='submit' class='btn btn-primary btn-lrg btn-block' id='submit'><i class='fa fa-check-circle' aria-hiddne='true'></i>Submit</button>
 
   <br>
-  </div>
-</body>
-
+ 
 <footer class='footer'>
   <div class='container'>
   <p><a href='#'>API Friends list</a> | <a href='#'>GitHub Repo</a></p></div>
 </footer>
 
-  </div>
+</div>
 
 <div id='resultsModal' class='modal fade' role='dialog'>
   <div class='modla-dialog'>
-    <div class='modal'content'>
+    <div class='modal-content'>
       <div class='modal-header'>
       <button type='button' class='close' data-dismiss='modal'>&times;</button>
-      <h2 class='modal-title><strong>Best Match</strong></h2>
+      <h2 class='modal-title'><strong>Best Match</strong></h2>
     
     <div class='modal-body'>
       <h2 id='matchName'></h2>
@@ -169,9 +171,10 @@
   </div>
 </div>
 
-<script='text/javascript>
-$('#submit').con('click', function() {
-  function validateFor() {
+<script type='text/javascript'>
+
+$('#submit').on('click', function() {
+  function validateForm() {
     var isValid = true;
     $('.form-control').each(function(){
       if ($(this).val() === '') {
@@ -179,7 +182,7 @@ $('#submit').con('click', function() {
       }
     });
     $('.chosen-select').each(function() {
-      if($(this.val() === '' {
+      if($(this).val() === '') {
            isValid = false;
           }
          });
@@ -191,20 +194,31 @@ $('#submit').con('click', function() {
           name: $('#name').val(),
           photo: $('#photo').val(),
           scores: [
-            $('q1').val(),
-            $('q2').val(),
-            $('q3').val(),
-            $('q4').val(),
-            $('q5').val(),
-            $('q6').val(),
-            $('q7').val(),
-            $('q8').val(),
-            $('q9').val(),
-            $('q10').val(),
+            $('#q1').val(),
+            $('#q2').val(),
+            $('#q3').val(),
+            $('#q4').val(),
+            $('#q5').val(),
+            $('#q6').val(),
+            $('#q7').val(),
+            $('#q8').val(),
+            $('#q9').val(),
+            $('#q10').val(),
            ]
           };
         
         var currentURL = window.location.origin;
         $.post(currentURL + '/api/friends', userData, function(data){
+          $('matchName').text(data.name);
+          $('matchImg').attr('src',data.photo);
+          $('#resultsModal').modal('toggle');
         });
+      } else {
+        alert('Please fill out all fields before submitting!');
+      }
+      return false;
+    });
+
 </script>
+</body>
+</html>
