@@ -184,6 +184,7 @@
 </div>
 
 <script type='text/javascript'>
+
   $(document).ready(function() {
     $('select').material_select();
     $('.modal').modal({
@@ -194,17 +195,18 @@
 				startingTop: '4%', 
 				endingTop: '10%' 
     });
-  });
 
   $('#submit').on('click', function(event) {
     event.preventDefault();
     function validateForm() {
       var isValid = true;
-      $('.form-control').each(function(){
+      
+      $('.form-control').each(function() {
         if ($(this).val() === '') {
           isValid = false;
         }
       });
+
       $('.chosen-select').each(function() {
         if($(this).val() === '') {
             isValid = false;
@@ -215,8 +217,8 @@
          
     if (validateForm()) {
         var userData = {
-          name: $('#name').val().trim(),
-          photo: $('#photo').val().trim(),
+          name: $('#name').val(),
+          photo: $('#photo').val(),
           scores: [
             $('#q1').val(),
             $('#q2').val(),
@@ -232,8 +234,7 @@
           };
         
         var currentURL = window.location.origin;
-        $.post(currentURL + '/api/friends', userData, function(data){
-
+        $.post(currentURL + '/api/friends', userData, function(data) {
           $('#matchName').text(data.name);
           $('#matchImg').attr('src',data.photo);
           $('#resultsModal').modal('toggle');
@@ -243,6 +244,7 @@
       }
       return false;
     });
+  });
 </script>
 </body>
 </html>
