@@ -1,4 +1,4 @@
-var friends = [
+var friendsData = [
   {
   name: 'Andy',
   photo: 'https://formosadiary.files.wordpress.com/2018/06/andy-bernard-e1529936277626.jpg',
@@ -83,4 +83,4 @@ var friends = [
   }
 ];
 
-module.exports = friends;
+module.exports = friendsData;
