@@ -58,7 +58,7 @@ var friends = [
   'name': 'Toby',
   'photo': 'https://i.redd.it/0er5ubrnsrh01.jpg',
   'scores': [3,1,2,2,3,1,2,3,2,1]
-  },
+  }
 ]
 
 module.exports = friends;
